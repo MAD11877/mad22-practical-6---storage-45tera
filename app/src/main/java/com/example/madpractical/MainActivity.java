@@ -3,6 +3,7 @@ package com.example.madpractical;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -59,20 +60,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void onClick(View v){
-
-        if(but.getText().toString().equals("Followed")){ //unfollowed
+        DBHandler db = new DBHandler(this);
+        if(but.getText().toString().equals("Followed")){ //user wants to unfollow case
             but.setText("Follow");
-            follow= false; //sets the attribute to unfollowed.
+            /*user1.followed =false;*/
+            Log.d("prb","" + user1.followed);
+            db.updateUser(user1); //sets the attribute to unfollowed.
             Toast.makeText(MainActivity.this,"Unfollowed!", Toast.LENGTH_SHORT).show();
         }
-        else if( but.getText().toString().equals("Follow")){ //followed
+        else if( but.getText().toString().equals("Follow")){ //user wants to follow case
             but.setText("Followed");
-            follow=true; //sets the attribute to follow.
+            /*user1.followed =true;*/
+            Log.d("prb","" + user1.followed);
+            db.updateUser(user1); //sets the attribute to follow.
             Toast.makeText(MainActivity.this,"Followed!", Toast.LENGTH_SHORT).show();
 
         }
 
     }
+
+
 
 
 

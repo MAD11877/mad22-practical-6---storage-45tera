@@ -27,18 +27,22 @@ public class ListActivity extends AppCompatActivity {
 
 
         //Week 4- randomising the name, description and follow status
-        ArrayList<User> userList = new ArrayList<>();
 
+        //Week 6 - SQLite
+        DBHandler db = new DBHandler(this);
         for (int i=0;i<21;i++){
-            String desc = "Description " + rand.nextInt(1000000000);
-            String nem = "Name" + rand.nextInt(10000000);
-            userList.add(new User(nem,desc,i,rand.nextBoolean()));
+            User userA = new User();
+            userA.name = "Name" + rand.nextInt(10000000);
+            userA.description = "Description " + rand.nextInt(1000000000);
+            userA.id = i;
+            userA.followed = rand.nextBoolean();
+            db.insertUser(userA);
         }
 
 
         //bring in the recycler view
         RecyclerView rv = findViewById(R.id.recycle);
-        ListAdapter adapter = new ListAdapter(userList,ListActivity.this);
+        ListAdapter adapter = new ListAdapter(db.getUser(),ListActivity.this);
         LinearLayoutManager layout = new LinearLayoutManager(this);
 
         rv.setAdapter(adapter);
