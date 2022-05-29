@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         m.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mes = new Intent(MainActivity.this,MessageGroup.class);
+                Intent mes = new Intent(MainActivity.this,LoginPage.class);
                 startActivity(mes);
             }
         });
@@ -64,14 +64,12 @@ public class MainActivity extends AppCompatActivity {
         if(but.getText().toString().equals("Followed")){ //user wants to unfollow case
             but.setText("Follow");
             /*user1.followed =false;*/
-            Log.d("prb","" + user1.followed);
             db.updateUser(user1); //sets the attribute to unfollowed.
             Toast.makeText(MainActivity.this,"Unfollowed!", Toast.LENGTH_SHORT).show();
         }
         else if( but.getText().toString().equals("Follow")){ //user wants to follow case
             but.setText("Followed");
             /*user1.followed =true;*/
-            Log.d("prb","" + user1.followed);
             db.updateUser(user1); //sets the attribute to follow.
             Toast.makeText(MainActivity.this,"Followed!", Toast.LENGTH_SHORT).show();
 
