@@ -30,14 +30,17 @@ public class ListActivity extends AppCompatActivity {
 
         //Week 6 - SQLite
         DBHandler db = new DBHandler(this);
-        for (int i=0;i<21;i++){
-            User userA = new User();
-            userA.name = "Name" + rand.nextInt(10000000);
-            userA.description = "Description " + rand.nextInt(1000000000);
-            userA.id = i;
-            userA.followed = rand.nextBoolean();
-            db.insertUser(userA);
+        if (db.UserCount() == 0){
+            for (int i=0;i<21;i++){
+                User userA = new User();
+                userA.name = "Name" + rand.nextInt(10000000);
+                userA.description = "Description " + rand.nextInt(1000000000);
+                userA.id = i;
+                userA.followed = rand.nextBoolean();
+                db.insertUser(userA);
+            }
         }
+
 
 
         //bring in the recycler view

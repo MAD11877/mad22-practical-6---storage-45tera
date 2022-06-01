@@ -37,6 +37,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
             //INSERT INTO User VALUES("name","description","int","followed")
     }
+    public int UserCount(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM User",null);
+        return cursor.getCount();
+    }
+
+
 
     //using cursor
     public ArrayList getUser(){
